@@ -1,0 +1,22 @@
+
+ /**
+  * Various colors that can be used with icons.
+  */
+  $white: #fff;
+ .icon-alt-color {
+     fill: $white;
+ }
+ 
+ 
+ .icon--white {
+     .icon-main-color {
+         fill: $white;
+     }
+ }
+ 
+ .icon--64 {
+     width: 64px;
+     height: 64px;
+ }
+ 
+ 

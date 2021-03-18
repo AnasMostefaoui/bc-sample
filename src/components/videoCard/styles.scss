@@ -1,0 +1,112 @@
+@import "../../global.scss";
+
+.article-card--video {
+	.video-shadow {
+		position: relative;
+		z-index: 1;
+
+		@include desktop {
+			&::after {
+				content: "";
+				position: absolute;
+				pointer-events: none;
+				z-index: 10;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				left: 0;
+				background: rgba( 0, 0, 0, 0.2 );
+				transition: opacity 500ms linear;
+			}
+
+			&:hover::after {
+				opacity: 0;
+			}
+		}
+	}
+}
+
+.article-card__video--player-icon {
+	cursor: pointer;
+	pointer-events: none;
+	position: absolute;
+	z-index: $index-high;
+
+	$icon-desktop-size: 80px;
+	$icon-mobile-size: 64px;
+
+	width: $icon-mobile-size;
+	height: $icon-mobile-size;
+	top: calc( 50% - #{ ( $icon-mobile-size / 2 ) } );
+	right: calc( 50% - #{ ( $icon-mobile-size / 2 ) } );
+
+	@include desktop {
+		width: $icon-desktop-size;
+		height: $icon-desktop-size;
+
+		top: calc( 50% - #{ ( $icon-desktop-size / 2 ) } );
+		right: calc( 50% - #{ ( $icon-desktop-size / 2 ) } );
+	}
+}
+
+.pre_video-wrapper {
+	.pre_video-play-button {
+		position: absolute;
+		z-index: 11;
+		top: 50%;
+		left: 50%;
+		width: 64px;
+		height: 64px;
+		margin-left: -32px;
+		margin-top: -32px;
+		border: none;
+		cursor: pointer;
+		background-color: transparent;
+		padding: 0;
+		line-height: 0;
+
+		@include desktop {
+			width: 80px;
+			height: 80px;
+			margin-left: -40px;
+			margin-top: -40px;
+
+			// stylelint-disable-next-line max-nesting-depth
+			.icon {
+				width: 80px;
+				height: 80px;
+			}
+		}
+
+		.icon {
+			position: absolute;
+			top: 0;
+			left: 0;
+			transition: opacity 125ms linear;
+		}
+
+		.icon--play {
+			opacity: 0;
+		}
+
+		&::before {
+			display: none;
+		}
+	}
+
+	.responsive-image:not(.responsive-image--disableIntrinsicHeight)::before {
+		padding-bottom: calc( 100% / ( 16 / 9 ) );
+	}
+
+	&:hover {
+		cursor: pointer;
+
+		.icon--play {
+			opacity: 1;
+		}
+
+		.icon--play-inverse {
+			opacity: 0;
+		}
+	}
+}
