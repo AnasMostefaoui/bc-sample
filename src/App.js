@@ -36,17 +36,11 @@ const HomePage = () => {
             <VideoPlayer 
               featuredImage="https://www.aljazeera.com/wp-content/uploads/2021/03/image-4.jpg"
               title="video 1"
-              excerpt="some description"
-              // Random
-              duration="10:10"
               videoId="6233935406001"/>
 
             <VideoPlayer 
               featuredImage="https://www.aljazeera.com/wp-content/uploads/2021/03/image-3.jpg"
               title="video 1"
-              excerpt="some description"
-              // Random
-              duration="10:10"
               videoId="6233957284001"/>
           </div>
           <div className="l-col l-col--4 container--ads-vertical-stretch"/>

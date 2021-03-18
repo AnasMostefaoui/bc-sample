@@ -1,19 +1,7 @@
-import classnames from 'classnames';
 import React from 'react';
 import ReactPlayerLoader from '@brightcove/react-player-loader';
 // import { pauseVideos, shouldAutoPlay } from '../../shared/video-helper';
 import './styles.scss';
-
-const BRIGHTCOVE_ACCOUNT_ID = '665003303001'
-const BRIGHTCOVE_PLAYER_ID_VOD = {
-    vod: 'nahv11Vw34',
-    amp: 'A3nzcwywTg',
-    live_qid: 'UbqgmlUbk',
-    live: 'AvByVmBYDu',
-    homepage_feed: 'gr2KYmKpVf',
-    program: 'BrG3w7rsI',
-    general: '6tKQRAx7lu',
-}
 
 /**
  * Video player wrapper with a consistent set of data available to feed Brightcove.
@@ -84,8 +72,8 @@ class VideoPlayer extends React.Component {
 	};
 
 	render() {
-		const { className, videoId, videoAccountId, videoPlayerId, featuredImageURL } = this.props;
-		if ( ! videoId || ! videoAccountId || ! videoPlayerId ) {
+		const { className, videoId, featuredImageURL } = this.props;
+		if ( ! videoId ) {
 			return null;
 		}
 		let posterOptions = {};
@@ -100,11 +88,11 @@ class VideoPlayer extends React.Component {
 			videoId: videoId,
 			options: posterOptions,
 		};
-
+		
 		return (
 			<ReactPlayerLoader
 				attrs={ {
-					className: classnames( 'aj-video-player', className ),
+					className: className+ ` aj-video-player`,
 				} }
 				{ ...playerData }
 				onSuccess={ this.onSuccess }
@@ -115,8 +103,6 @@ class VideoPlayer extends React.Component {
 }
 
 VideoPlayer.defaultProps = {
-	videoPlayerId: BRIGHTCOVE_PLAYER_ID_VOD,
-	videoAccountId: BRIGHTCOVE_ACCOUNT_ID,
 	autoPlayDesktop: false,
 	autoPlayMobile: false,
 	autoPlayMuted: false,
