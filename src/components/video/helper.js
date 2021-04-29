@@ -23,18 +23,6 @@
 		// eslint-disable-next-line no-undef
 		const player = bc.videojs.getPlayer( videoElement )
 		if ( player && player.id() !== id ) {
-			console.log('on pause here')
-			// eslint-disable-next-line no-undef
-			const adsManager = player?.ima3?.adsManager || {}
-			const adDisplayContainer = player?.ima3?.adDisplayContainer || {}
-			console.log('stopping ads')
-			// stop the ads
-			// remove the ads UI elements
-			adsManager.stop()
-			// adDisplayContainer.destroy()
-			// reset the SDK
-			global.ima = null
-			window.google.ima = null
 			// pause the video
 			player.pause();
 		} else {

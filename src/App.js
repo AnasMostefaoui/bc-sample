@@ -1,4 +1,5 @@
 import VideoPlayer from './components/videoCard'
+import BrightcovePlayer from './components/video/livePlayer'
 import {
   BrowserRouter as Router,
   Switch,
@@ -6,16 +7,18 @@ import {
   Link
 } from "react-router-dom";
 
+
+document.addEventListener( 'beforepluginsetup', () => {
+  console.log('something')
+})
+
 function App() {
   return (
     <Router>
         <Switch>
-          <Route path="/about">
-            <NextPage/>
-          </Route>
-          <Route path="/">
-            <HomePage />
-          </Route>
+          <Route exact path="/" component={ HomePage }/>
+          <Route path="/live" component={ LivePage } />
+          <Route path="/about" component={ NextPage }/>
         </Switch>
     </Router>
   );
@@ -30,6 +33,7 @@ const NextPage = () => {
   )
 }
 const HomePage = () => {
+  console.log('home')
   return (
     <div className="container container--grid">
         <div className="l-col l-col--8">
@@ -44,6 +48,28 @@ const HomePage = () => {
               videoId="6233957284001"/>
           </div>
           <div className="l-col l-col--4 container--ads-vertical-stretch"/>
+
+          <Link to="/live">Live</Link>
+          <br/>
+          <Link to="/about">about</Link>
+    </div> 
+  )
+}
+
+const LivePage = () => {
+  console.log('live')
+  return (
+    <div className="container container--grid">
+        <div className="l-col l-col--8">
+          Hello live
+          <BrightcovePlayer
+            videoAccountId="911432371001"
+            videoId="6031747102001"
+            videoPlayerId="bCuQF5l6Z"
+            autoPlayDesktop={ true }
+            autoPlayMobile={ true }
+            autoPlayMuted={ true }/>
+          </div>
     </div> 
   )
 }

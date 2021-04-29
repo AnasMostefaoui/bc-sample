@@ -59,7 +59,7 @@ class VideoPlayer extends React.Component {
 	};
 
 	render() {
-		const { className, videoId, featuredImageURL } = this.props;
+		const { className, videoId, featuredImageURL, accountId, playerId } = this.props;
 		if ( ! videoId ) {
 			return null;
 		}
@@ -70,8 +70,8 @@ class VideoPlayer extends React.Component {
 		}
 
 		const playerData = {
-			accountId: "665003303001",
-			playerId: '6t4wpW2MCb',
+			accountId: accountId ?? "665003303001",
+			playerId: playerId ?? '6t4wpW2MCb',
 			videoId: videoId,
 			options: posterOptions,
 		};
