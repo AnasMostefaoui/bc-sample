@@ -1,11 +1,13 @@
 import VideoPlayer from './components/videoCard'
 import BrightcovePlayer from './components/video/livePlayer'
+import BrightcovePlayerAJB from './components/video/livePlayer'
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Link
 } from "react-router-dom";
+import { Fragment } from 'react';
 
 
 document.addEventListener( 'beforepluginsetup', () => {
@@ -14,13 +16,31 @@ document.addEventListener( 'beforepluginsetup', () => {
 
 function App() {
   return (
-    <Router>
-        <Switch>
-          <Route exact path="/" component={ HomePage }/>
-          <Route path="/live" component={ LivePage } />
-          <Route path="/about" component={ NextPage }/>
-        </Switch>
-    </Router>
+    <Fragment>
+      <Router>
+
+      <Link to="/">Home</Link>
+        <br/>
+        <Link to="/live">Live Broken player - AJB</Link>
+        <br/>
+        <Link to="/ajelive">Live Broken player - AJE</Link>
+        <br/>
+        <Link to="/ajbLive">Live Working player - AJB</Link>
+        <br/>
+        <Link to="/about">About</Link>
+          <Switch>
+            <Route exact path="/" component={ HomePage }/>
+            <Route path="/live" component={ LivePage } />
+            <Route path="/ajelive" component={ LiveAJEPage } />
+            <Route path="/ajbLive" component={ LiveAJBPage } />
+            <Route path="/about" component={ NextPage }/>
+          </Switch>
+      </Router>
+      <div>
+
+
+      </div>
+    </Fragment>
   );
 }
 
@@ -48,10 +68,6 @@ const HomePage = () => {
               videoId="6233957284001"/>
           </div>
           <div className="l-col l-col--4 container--ads-vertical-stretch"/>
-
-          <Link to="/live">Live</Link>
-          <br/>
-          <Link to="/about">about</Link>
     </div> 
   )
 }
@@ -63,6 +79,40 @@ const LivePage = () => {
         <div className="l-col l-col--8">
           Hello live
           <BrightcovePlayer
+            videoAccountId="911432371001"
+            videoId="6031747102001"
+            videoPlayerId="bCuQF5l6Z"
+            autoPlayDesktop={ true }
+            autoPlayMobile={ true }
+            autoPlayMuted={ true }/>
+          </div>
+    </div> 
+  )
+}
+const LiveAJEPage = () => {
+  console.log('aje live')
+  return (
+    <div className="container container--grid">
+        <div className="l-col l-col--8">
+          Hello AJE live
+          <BrightcovePlayer
+            videoAccountId="665003303001"
+            videoId="5467349513001"
+            videoPlayerId="6t4wpW2MCb"
+            autoPlayDesktop={ true }
+            autoPlayMobile={ true }
+            autoPlayMuted={ true }/>
+          </div>
+    </div> 
+  )
+}
+const LiveAJBPage = () => {
+  console.log('ajb live')
+  return (
+    <div className="container container--grid">
+        <div className="l-col l-col--8">
+          Hello AJB live
+          <BrightcovePlayerAJB
             videoAccountId="911432371001"
             videoId="6031747102001"
             videoPlayerId="bCuQF5l6Z"
