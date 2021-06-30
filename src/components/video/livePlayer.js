@@ -48,30 +48,24 @@ class VideoPlayer extends React.Component {
 			return;
 		}
 
-		// Set timeout to fake user interaction
-		setTimeout( function () {
-		}, 20 )
+		const playPromise = () => {
+            let promise = videoPlayer.play()
+            if (promise !== undefined) {
+                promise.then((_) => {}).catch((error) => {})
+            }
+        }
 
-		// If video should autoplay, explictly set the autoplay attribute on the video element
-		// This is needed to ensure autoplay will work in iOS
-		// Not using state variable this.state.videoShouldAutoPlay when calling shouldAutoPlay() function,
-		// because in Safari this sometimes runs before componentDidMount, preventing autoplay
-		if ( shouldAutoPlay( this.state.isMobile, this.props.autoPlayMobile, this.props.autoPlayDesktop ) ) {
-			const videoElement = videoPlayer.el().querySelector( 'video' );
-			videoElement.setAttribute( 'autoPlay', 'muted' );
-		}
-
+		videoPlayer.muted(true)
 		// If there are multiple brightcove players on the page,
 		// Ensure that only the most recently started player is playing
 		videoPlayer.on( 'play', e => {
 			pauseVideos( e.target.id, document );
-			if ( this.props && typeof this.props.onPlay === 'function' ) {
-				this.props.onPlay()
-			}
 		} );
 
 		if ( forcePlay ){
-			videoPlayer.play();
+			console.log('force playing?');
+			playPromise()
+			videoPlayer.mute( true )
 			return;
 		}
 
@@ -80,7 +74,8 @@ class VideoPlayer extends React.Component {
 		// Conditionally autoplay the video, with sound conditionally muted, based on props
 		videoPlayer.on( autoPlayEvents, () => {
 			if ( this.state.videoShouldAutoPlay ) {
-				videoPlayer.muted( autoPlayMuted );
+				console.log('muting on');
+				videoPlayer.muted( true );
 				videoPlayer.play();
 			}
 		} )

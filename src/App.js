@@ -79,9 +79,12 @@ const LivePage = () => {
         <div className="l-col l-col--8">
           Hello live
           <BrightcovePlayer
-            videoAccountId="911432371001"
-            videoId="6031747102001"
-            videoPlayerId="bCuQF5l6Z"
+            // videoAccountId="911432371001"
+            // videoId="6031747102001"
+            // videoPlayerId="bCuQF5l6Z"
+            videoAccountId="665003303001"
+            videoId="6233935406001"
+            videoPlayerId="6t4wpW2MCb"
             autoPlayDesktop={ true }
             autoPlayMobile={ true }
             autoPlayMuted={ true }/>
