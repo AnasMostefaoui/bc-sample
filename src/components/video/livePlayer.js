@@ -39,7 +39,7 @@ class VideoPlayer extends React.Component {
 	 * @param success
 	 */
 	onSuccess = success => {
-		const { autoPlayMuted, forcePlay } = this.props;
+		const { forcePlay } = this.props;
 		const videoPlayer = success.ref;
 		videoPlayer.reset();
 
